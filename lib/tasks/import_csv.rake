@@ -21,4 +21,10 @@ require 'csv'
     end #end task merchant
   end #end foreach merchant
 
+  task invoice: :environment do
+    CSV.foreach('./data/invoices.csv', headers:true) do |row|
+      Invoice.create(row.to_hash)
+    end #end task merchant
+  end #end foreach merchant
+
 end #end namspace
