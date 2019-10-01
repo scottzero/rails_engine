@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191001063724) do
+ActiveRecord::Schema.define(version: 20191001065141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20191001063724) do
     t.string "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.bigint "merchant_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_invoices_on_customer_id"
+    t.index ["merchant_id"], name: "index_invoices_on_merchant_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -59,5 +63,7 @@ ActiveRecord::Schema.define(version: 20191001063724) do
     t.datetime "updated_at"
   end
 
+  add_foreign_key "invoices", "customers"
+  add_foreign_key "invoices", "merchants"
   add_foreign_key "items", "merchants"
 end
