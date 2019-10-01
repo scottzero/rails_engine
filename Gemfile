@@ -34,6 +34,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'simplecov'
   gem 'faker'
+  gem 'fast_jsonapi'
 end
 
 group :development do
