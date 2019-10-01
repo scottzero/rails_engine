@@ -33,4 +33,10 @@ require 'csv'
     end
   end
 
+  task invoice_item: :environment do
+    CSV.foreach('./data/invoice_items.csv', headers:true) do |row|
+      InvoiceItem.create(row.to_hash)
+    end
+  end
+
 end #end namspace
