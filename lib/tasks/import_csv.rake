@@ -1,6 +1,6 @@
 require 'csv'
 #need to create tables and model first :o !!!
-  namespace :import do
+  namespace :fetch do
   desc "import data from csv file"
 
   task customer: :environment do
@@ -12,19 +12,25 @@ require 'csv'
   task merchant: :environment do
     CSV.foreach('./data/merchants.csv', headers:true) do |row|
       Merchant.create(row.to_hash)
-    end #end task merchant
-  end #end foreach merchant
+    end
+  end
 
   task item: :environment do
     CSV.foreach('./data/items.csv', headers:true) do |row|
       Item.create(row.to_hash)
-    end #end task merchant
-  end #end foreach merchant
+    end
+  end
 
   task invoice: :environment do
     CSV.foreach('./data/invoices.csv', headers:true) do |row|
       Invoice.create(row.to_hash)
-    end #end task merchant
-  end #end foreach merchant
+    end
+  end
+
+  task transaction: :environment do
+    CSV.foreach('./data/transactions.csv', headers:true) do |row|
+      Transaction.create(row.to_hash)
+    end
+  end
 
 end #end namspace
