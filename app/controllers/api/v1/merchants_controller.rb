@@ -4,7 +4,6 @@ class Api::V1::MerchantsController < ApplicationController
     render json: MerchantSerializer.new(Merchant.where(merchant_params))
   end
 
-
   private
 
   def merchant_params

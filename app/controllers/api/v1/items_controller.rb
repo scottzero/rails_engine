@@ -3,7 +3,6 @@ class Api::V1::ItemsController < ApplicationController
     render json: ItemSerializer.new(Item.where(item_params))
   end
 
-
   private
 
   def item_params

@@ -3,7 +3,6 @@ class Api::V1::TransactionsController < ApplicationController
     render json: TransactionSerializer.new(Transaction.where(transaction_params))
   end
 
-
   private
 
   def transaction_params
