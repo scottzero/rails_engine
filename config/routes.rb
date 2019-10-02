@@ -2,6 +2,12 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      resources :transactions, except: [:new, :edit]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
       resources :invoice_items, except: [:new, :edit]
     end
   end
