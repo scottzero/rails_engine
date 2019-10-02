@@ -3,6 +3,10 @@ class Api::V1::TransactionsController < ApplicationController
     render json: TransactionSerializer.new(Transaction.where(transaction_params))
   end
 
+  def show
+    render json: TransactionSerializer.new(Transaction.find(params[:id]))
+  end
+
   private
 
   def transaction_params

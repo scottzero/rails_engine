@@ -3,6 +3,10 @@ class Api::V1::InvoicesController < ApplicationController
     render json: InvoiceSerializer.new(Invoice.where(invoice_params))
   end
 
+  def show
+    render json: Invoice.new(Invoice.find(params[:id]))
+  end
+
   private
 
   def invoice_params

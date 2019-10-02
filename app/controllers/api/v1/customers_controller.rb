@@ -3,6 +3,10 @@ class Api::V1::CustomersController < ApplicationController
     render json: CustomerSerializer.new(Customer.where(customer_params))
   end
 
+  def show
+    render json: CustomerSerializer.new(Customer.find(params[:id]))
+  end
+
   private
 
   def customer_params
