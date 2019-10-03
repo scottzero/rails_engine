@@ -21,4 +21,19 @@ RSpec.describe "calling items API" do
     item = JSON.parse(response.body)["data"]
     expect(item["id"].to_i).to eq(id)
   end
+
+  context "test single finders" do
+     it "returns single item, search is based on primary key" do
+       item_1 = create(:item).id
+       item_2 = create(:item).id
+
+       get "/api/v1/items/find?id=#{item_1}"
+
+       item = JSON.parse(response.body)["data"]
+
+       expect(response).to be_successful
+       expect(item["id"]).to eq(item_1.to_s)
+       expect(item["id"]).to_not eq(item_2.to_s)
+     end
+   end
 end
