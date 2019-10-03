@@ -34,5 +34,24 @@ RSpec.describe "Calling Merchant API" do
        expect(merchant["id"]).to eq(merchant_1.to_s)
        expect(merchant["id"]).to_not eq(merchant_2.to_s)
      end
-   end 
+
+     it "returns a single merchant by name" do
+      merchant_1 = create(:merchant, name: "scott")
+      merchant_2 = create(:merchant, name: "bob")
+
+      get "/api/v1/merchants/find?name=#{merchant_1.name}"
+      merchant = JSON.parse(response.body)["data"]
+
+      expect(response).to be_successful
+      expect(merchant["attributes"]["name"]).to eq(merchant_1.name)
+      expect(merchant["attributes"]["name"]).to_not eq(merchant_2.name)
+
+      get "/api/v1/merchants/find?name=#{merchant_2.name}"
+      merchant = JSON.parse(response.body)["data"]
+
+      expect(response).to be_successful
+      expect(merchant["attributes"]["name"]).to eq(merchant_2.name)
+      expect(merchant["attributes"]["name"]).to_not eq(merchant_1.name)
+    end
+   end
 end
