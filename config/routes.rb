@@ -35,4 +35,5 @@ Rails.application.routes.draw do
     resources :merchants, except: [:new,:edit]
     end
   end
+
 end
