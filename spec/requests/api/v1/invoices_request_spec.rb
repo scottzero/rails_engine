@@ -21,4 +21,19 @@ RSpec.describe "Calling invoices api" do
     invoice = JSON.parse(response.body)["data"]
     expect(invoice["id"].to_i).to eq(id)
   end
+
+  context "test single finders" do
+     it "returns single invoice, search is based on primary key" do
+       invoice_1 = create(:invoice).id
+       invoice_2 = create(:invoice).id
+
+       get "/api/v1/invoices/find?id=#{invoice_1}"
+
+       invoice = JSON.parse(response.body)["data"]
+
+       expect(response).to be_successful
+       expect(invoice["id"]).to eq(invoice_1.to_s)
+       expect(invoice["id"]).to_not eq(invoice_2.to_s)
+     end
+   end
 end

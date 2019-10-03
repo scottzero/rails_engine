@@ -21,4 +21,19 @@ RSpec.describe "Calling Transactions api"  do
     transaction = JSON.parse(response.body)["data"]
     expect(transaction["id"].to_i).to eq(id)
   end
+
+  context "test single finders" do
+     it "returns single transaction, search is based on primary key" do
+       transaction_1 = create(:transaction).id
+       transaction_2 = create(:transaction).id
+
+       get "/api/v1/transactions/find?id=#{transaction_1}"
+
+       transaction = JSON.parse(response.body)["data"]
+
+       expect(response).to be_successful
+       expect(transaction["id"]).to eq(transaction_1.to_s)
+       expect(transaction["id"]).to_not eq(transaction_2.to_s)
+     end
+   end
 end

@@ -2,29 +2,41 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :transactions, only: [:index, :show]
+      namespace :transactions do
+        get "/find", to: "search#show"
     end
+    resources :transactions, only: [:index, :show]
   end
+end
 
   namespace :api do
     namespace :v1 do
-      resources :invoice_items, only: [:index, :show]
+      namespace :customers do
+        get "/find", to: "search#show"
     end
+    resources :customers, only: [:index, :show]
   end
+end
 
   namespace :api do
     namespace :v1 do
-      resources :invoices, only: [:index, :show]
+      namespace :invoice_items do
+        get "/find", to: "search#show"
     end
+    resources :invoice_items, only: [:index, :show]
   end
-
+end
 
   namespace :api do
     namespace :v1 do
-      resources :customers, only: [:index, :show]
-    end
+      namespace :invoices do
+        get "/find", to: "search#show"
   end
-  
+  resources :invoices, only: [:index, :show]
+end
+end
+
+
   namespace :api do
     namespace :v1 do
       namespace :items do

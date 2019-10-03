@@ -21,4 +21,20 @@ RSpec.describe "calling customers request api" do
       customer = JSON.parse(response.body)["data"]
       expect(customer["id"].to_i).to eq(id)
     end
+
+
+    context "test single finders" do
+       it "returns single customer, search is based on primary key" do
+         customer_1 = create(:customer).id
+         customer_2 = create(:customer).id
+
+         get "/api/v1/customers/find?id=#{customer_1}"
+
+      customer = JSON.parse(response.body)["data"]
+
+         expect(response).to be_successful
+         expect(customer["id"]).to eq(customer_1.to_s)
+         expect(customer["id"]).to_not eq(customer_2.to_s)
+       end
+     end
   end #end describe
