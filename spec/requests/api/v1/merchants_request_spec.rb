@@ -81,4 +81,20 @@ end
    expect(merchant[0]["id"].to_i).to eq(merchant_2.id)
 end
 end
+
+  context "random finders" do
+    it "finds a random Merchant" do
+    create_list(:merchant, 10)
+
+    ids = Merchant.pluck(:id)
+
+    get "/api/v1/merchants/random"
+
+    expect(response).to be_successful
+
+    merchant = JSON.parse(response.body)["data"]
+    # binding.pry
+    expect(ids).to include(merchant["id"].to_i)
+  end
+  end
 end
