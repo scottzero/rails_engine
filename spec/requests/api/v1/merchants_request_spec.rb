@@ -65,4 +65,20 @@ RSpec.describe "Calling Merchant API" do
      expect(merchant["id"].to_i).to eq(merchant_1.id)
   end
 end
+#BEGIN MULTI FINDERS !!!!!!!
+  context "multi-finders" do
+    it "gets all merchants by merchant ID" do
+    merchant_1 = create(:merchant)
+    merchant_2 = create(:merchant)
+
+   get "/api/v1/merchants/find_all?id=#{merchant_1.id}"
+   expect(response).to be_successful
+   merchant = JSON.parse(response.body)["data"]
+   expect(merchant[0]["id"].to_i).to eq(merchant_1.id)
+   get "/api/v1/merchants/find_all?id=#{merchant_2.id}"
+   expect(response).to be_successful
+   merchant = JSON.parse(response.body)["data"]
+   expect(merchant[0]["id"].to_i).to eq(merchant_2.id)
+end
+end
 end
