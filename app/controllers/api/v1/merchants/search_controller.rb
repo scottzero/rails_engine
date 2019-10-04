@@ -10,6 +10,12 @@ class Api::V1::Merchants::SearchController < ApplicationController
     render json: MerchantSerializer.new(Merchant.find_by(merchant_params))
   end
 
+  def random
+    if merchant_params.empty?
+    render json: MerchantSerializer.new(Merchant.all.sample)
+    end
+end
+
 
   private
 
