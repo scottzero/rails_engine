@@ -46,5 +46,23 @@ RSpec.describe "Calling Merchant API" do
       expect(merchant["attributes"]["name"]).to eq(merchant_2.name)
       expect(merchant["attributes"]["name"]).to_not eq(merchant_1.name)
     end
+
+    it "finds a single merchant by created_at time stamp" do
+      merchant_1 = create(:merchant, created_at: "1999-01-03T10:10:10.000Z")
+      get "/api/v1/merchants/find?created_at=#{merchant_1.created_at}"
+      expect(response).to be_successful
+      merchant = JSON.parse(response.body)["data"]
+      # binding.pry
+      expect(merchant["id"].to_i).to eq(merchant_1.id)
    end
+
+   it "finds a single merchant by updated_at time stamp" do
+     merchant_1 = create(:merchant, created_at: "1999-01-03T10:10:10.000Z",updated_at: "1999-01-03T11:11:11.000Z")
+     get "/api/v1/merchants/find?updated_at=#{merchant_1.updated_at}"
+     expect(response).to be_successful
+     merchant = JSON.parse(response.body)["data"]
+     # binding.pry
+     expect(merchant["id"].to_i).to eq(merchant_1.id)
+  end
+end
 end
