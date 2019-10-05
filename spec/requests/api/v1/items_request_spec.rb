@@ -36,4 +36,20 @@ RSpec.describe "calling items API" do
        expect(item["id"]).to_not eq(item_2.to_s)
      end
    end
+
+   it "returns a single item by name" do
+    item_1 = create(:item, name: "xbox")
+    item_2 = create(:item, name: "pc")
+
+    get "/api/v1/items/find?name=#{item_1.name}"
+    item = JSON.parse(response.body)["data"]
+    expect(response).to be_successful
+    expect(item["attributes"]["name"]).to eq(item_1.name)
+    expect(item["attributes"]["name"]).to_not eq(item_2.name)
+    get "/api/v1/items/find?name=#{item_2.name}"
+    item = JSON.parse(response.body)["data"]
+    expect(response).to be_successful
+    expect(item["attributes"]["name"]).to eq(item_2.name)
+    expect(item["attributes"]["name"]).to_not eq(item_1.name)
+  end
 end
