@@ -59,6 +59,8 @@ end
         get "/find_all", to: "search#index"
 
         #relationship endpoints
+        get "/:id/merchant", to: "merchants#show"
+        get "/:id/invoice_items", to: "invoice_items#index"
       end
       resources :items, only: [:index, :show]
     end
