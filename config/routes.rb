@@ -55,6 +55,7 @@ end
       get "/random", to: "search#random"
         #relationship endpoints
       get "/:id/items", to: "items#index"
+      get "/:id/invoices", to: "invoices#index"
     end
     resources :merchants, only: [:index,:show]
   end
