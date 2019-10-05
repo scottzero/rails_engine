@@ -7,16 +7,12 @@ class Api::V1::Merchants::SearchController < ApplicationController
   end
 
   def show
-    render json: MerchantSerializer.new(Merchant.find_by(merchant_params))
-  end
-
-  def random
-    #random does not work with spec harness need to get rid of the attributes id in hash
     if merchant_params.empty?
-    render json: MerchantSerializer.new(Merchant.all.sample)
+      render json: MerchantRandomSerializer.new(Merchant.order('RANDOM()').first)
+    else
+      render json: MerchantSerializer.new(Merchant.find_by(merchant_params))
     end
-end
-
+  end
 
   private
 
