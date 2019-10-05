@@ -16,7 +16,14 @@ end
   namespace :api do
     namespace :v1 do
       namespace :customers do
+        #search endpoints, still need random
         get "/find", to: "search#show"
+        get "/find_all", to: "search#index"
+        #relationship endpoints
+        get "/:id/invoices", to: "invoices#index"
+        get "/:id/transactions", to: "transactions#index"
+
+
     end
     resources :customers, only: [:index, :show]
   end
