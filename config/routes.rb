@@ -49,9 +49,12 @@ end
   namespace :api do
     namespace :v1 do
       namespace :merchants do
+        #search endpoints
       get "/find", to: "search#show"
       get "/find_all", to: "search#index"
       get "/random", to: "search#random"
+        #relationship endpoints
+      get "/:id/items", to: "items#index"
     end
     resources :merchants, only: [:index,:show]
   end
