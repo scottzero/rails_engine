@@ -72,6 +72,7 @@ end
         get "/:id/invoice_items", to: "invoice_items#index"
 
         #business endpoints
+        get "/most_revenue", to: "most_revenue#index"
       end
       resources :items, only: [:index, :show]
     end
