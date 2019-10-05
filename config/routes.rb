@@ -44,8 +44,11 @@ end
   namespace :api do
     namespace :v1 do
       namespace :invoices do
+        #search endpoints
         get "/find", to: "search#show"
         get "/find_all", to: "search#index"
+        #relationship endpoints
+        get "/:id/items", to: "items#index"
   end
   resources :invoices, only: [:index, :show]
 end
