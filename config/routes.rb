@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       namespace :transactions do
         #search endpoints
         get "/find", to: "search#show"
-        get "/find_all", to: "search#show"
+        get "/find_all", to: "search#index"
         #relationship endpoints
         get "/:id/invoice", to: "invoices#show"
     end
