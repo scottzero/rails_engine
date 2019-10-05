@@ -66,7 +66,7 @@ end
         #search endpoints
         get "/find", to: "search#show"
         get "/find_all", to: "search#index"
-
+        get "/random", to: "search#show"
         #relationship endpoints
         get "/:id/merchant", to: "merchants#show"
         get "/:id/invoice_items", to: "invoice_items#index"
@@ -85,7 +85,7 @@ end
         #search endpoints
       get "/find", to: "search#show"
       get "/find_all", to: "search#index"
-      get "/random", to: "search#random"
+      get "/random", to: "search#show"
         #relationship endpoints
       get "/:id/items", to: "items#index"
       get "/:id/invoices", to: "invoices#index"
