@@ -13,4 +13,14 @@ validates_presence_of :name, :description, :unit_price
     .order("revenue DESC")
     .limit(x)
   end
+
+  def self.best_day
+    invoices.select("invoices.created_at AS best_day, SUM(invoice_items.quantity) AS sum_amt_sold")
+    .joins(:transactions)
+    .where(transactions: {result: "success"})
+    .group(:created_at)
+    .order("sum_amt_sold DESC, best_day DESC") #default DESC
+    .limit(1)
+  end
+
 end
