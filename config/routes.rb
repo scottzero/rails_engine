@@ -87,6 +87,9 @@ end
         #relationship endpoints
       get "/:id/items", to: "items#index"
       get "/:id/invoices", to: "invoices#index"
+        #business logic endpoints
+      get "/most_revenue", to: "most_revenue#index"
+
     end
     resources :merchants, only: [:index,:show]
   end
