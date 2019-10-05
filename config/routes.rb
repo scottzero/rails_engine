@@ -54,7 +54,11 @@ end
   namespace :api do
     namespace :v1 do
       namespace :items do
+        #search endpoints
         get "/find", to: "search#show"
+        get "/find_all", to: "search#index"
+
+        #relationship endpoints
       end
       resources :items, only: [:index, :show]
     end
