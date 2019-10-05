@@ -61,6 +61,8 @@ end
         #relationship endpoints
         get "/:id/merchant", to: "merchants#show"
         get "/:id/invoice_items", to: "invoice_items#index"
+
+        #business endpoints
       end
       resources :items, only: [:index, :show]
     end
