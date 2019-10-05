@@ -11,6 +11,7 @@ class Api::V1::Merchants::SearchController < ApplicationController
   end
 
   def random
+    #random does not work with spec harness need to get rid of the attributes id in hash
     if merchant_params.empty?
     render json: MerchantSerializer.new(Merchant.all.sample)
     end
