@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Calling Transactions api"  do
+RSpec.describe "Transactions API can do..."  do
 
   it "gets all transactions" do
     create_list(:transaction, 9)
@@ -22,18 +22,14 @@ RSpec.describe "Calling Transactions api"  do
     expect(transaction["id"].to_i).to eq(id)
   end
 
-  context "test single finders" do
-     it "returns single transaction, search is based on primary key" do
-       transaction_1 = create(:transaction).id
-       transaction_2 = create(:transaction).id
-
-       get "/api/v1/transactions/find?id=#{transaction_1}"
-
-       transaction = JSON.parse(response.body)["data"]
-
+  context "Invoices relationship..." do
+     it "gets the invoice for a transaction" do
+       invoice = create(:invoice)
+       transaction = create(:transaction, invoice: invoice)
+       get "/api/v1/transactions/#{transaction.id}/invoice"
        expect(response).to be_successful
-       expect(transaction["id"]).to eq(transaction_1.to_s)
-       expect(transaction["id"]).to_not eq(transaction_2.to_s)
+       transaction_invoice = JSON.parse(response.body)["data"]
+       expect(transaction_invoice["id"].to_i).to eq(invoice.id)
      end
    end
 end

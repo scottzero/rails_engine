@@ -111,4 +111,20 @@ end
       expect(merchant_items[1]["id"].to_i).to eq(item_2.id)
       expect(merchant_items[2]["id"].to_i).to eq(item_3.id)
     end
+
+    it "can get all invoices for a single merchant" do
+      merchant = create(:merchant)
+      item_1 = create(:invoice, merchant: merchant)
+      item_2 = create(:invoice, merchant: merchant)
+      item_3 = create(:invoice, merchant: merchant)
+      get "/api/v1/merchants/#{merchant.id}/invoices"
+      expect(response).to be_successful
+      merchant_invoices = JSON.parse(response.body)["data"]
+      expect(merchant_invoices[0]["id"].to_i).to eq(item_1.id)
+      expect(merchant_invoices[1]["id"].to_i).to eq(item_2.id)
+      expect(merchant_invoices[2]["id"].to_i).to eq(item_3.id)
+    end
+end
+
+    
 end
