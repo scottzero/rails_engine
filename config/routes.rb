@@ -22,8 +22,6 @@ end
         #relationship endpoints
         get "/:id/invoices", to: "invoices#index"
         get "/:id/transactions", to: "transactions#index"
-
-
     end
     resources :customers, only: [:index, :show]
   end
@@ -32,7 +30,12 @@ end
   namespace :api do
     namespace :v1 do
       namespace :invoice_items do
+        #search endpoints
         get "/find", to: "search#show"
+        get "/find_all", to: "search#index"
+        #relationship endpoints
+        get "/:id/item", to: "items#show"
+        get "/:id/invoice", to: "invoices#show"
     end
     resources :invoice_items, only: [:index, :show]
   end
