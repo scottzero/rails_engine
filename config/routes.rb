@@ -73,6 +73,7 @@ end
 
         #business endpoints
         get "/most_revenue", to: "most_revenue#index"
+        get "/best_day", to: "best_day#show"
       end
       resources :items, only: [:index, :show]
     end
@@ -90,7 +91,6 @@ end
       get "/:id/invoices", to: "invoices#index"
         #business logic endpoints
       get "/most_revenue", to: "most_revenue#index"
-
     end
     resources :merchants, only: [:index,:show]
   end
