@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       namespace :transactions do
+        #search endpoints
         get "/find", to: "search#show"
+        get "/find_all", to: "search#show"
+        #relationship endpoints
+        get "/:id/invoice", to: "invoices#show"
     end
     resources :transactions, only: [:index, :show]
   end
