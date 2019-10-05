@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       namespace :transactions do
         #search endpoints
         get "/find", to: "search#show"
-        get "/find_all", to: "search#show"
+        get "/find_all", to: "search#index"
         #relationship endpoints
         get "/:id/invoice", to: "invoices#show"
     end
@@ -66,12 +66,14 @@ end
         #search endpoints
         get "/find", to: "search#show"
         get "/find_all", to: "search#index"
-
+        get "/random", to: "search#show"
         #relationship endpoints
         get "/:id/merchant", to: "merchants#show"
         get "/:id/invoice_items", to: "invoice_items#index"
 
         #business endpoints
+        get "/most_revenue", to: "most_revenue#index"
+        get "/best_day", to: "best_day#show"
       end
       resources :items, only: [:index, :show]
     end
@@ -83,13 +85,12 @@ end
         #search endpoints
       get "/find", to: "search#show"
       get "/find_all", to: "search#index"
-      get "/random", to: "search#random"
+      get "/random", to: "search#show"
         #relationship endpoints
       get "/:id/items", to: "items#index"
       get "/:id/invoices", to: "invoices#index"
         #business logic endpoints
       get "/most_revenue", to: "most_revenue#index"
-
     end
     resources :merchants, only: [:index,:show]
   end

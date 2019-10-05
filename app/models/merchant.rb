@@ -13,4 +13,4 @@ def self.most_revenue(x)
   .limit(x)
 end
 
-end 
+end
