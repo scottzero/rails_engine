@@ -10,7 +10,7 @@ def fave_merch
   merchants.joins(invoices: :transactions)
   .where(transactions: {result: "success"})
   .group(:id)
-  .order("COUNT(transactions.id) DESC").limit(1)
+  .order("COUNT(transactions.id)").limit(1)
 end
 
 end
