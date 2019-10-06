@@ -8,6 +8,7 @@ Rails.application.routes.draw do
         get "/find_all", to: "search#index"
         #relationship endpoints
         get "/:id/invoice", to: "invoices#show"
+
     end
     resources :transactions, only: [:index, :show]
   end
@@ -22,6 +23,8 @@ end
         #relationship endpoints
         get "/:id/invoices", to: "invoices#index"
         get "/:id/transactions", to: "transactions#index"
+        #business logic endpoints
+        get ":id/favorite_merchant", to: "favorite_merchant#show"
     end
     resources :customers, only: [:index, :show]
   end
