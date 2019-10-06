@@ -1,5 +1,5 @@
 # README
-# [!!STILL IN DEVELOPMENT!! 93/107 spec harness tests cleared] 
+[!!STILL IN DEVELOPMENT!! 93/107 spec harness tests cleared] 
 # Rails Engine
 Rails Engine is a Turing School of Software & Design project that uses Rails to build a JSON:API to expose (fabricated) 
 sales data imported from CSV files. 
