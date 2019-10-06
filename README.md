@@ -1,24 +1,37 @@
 # README
+# Rails Engine
+Rails Engine is a Turing School of Software & Design project that uses Rails to build a JSON:API to expose (generated) 
+sales data imported from CSV files. 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Database Schema
+  ![Screenshot](Screenshot101.png)
+  
+# Environment Setup 
+  - Ruby 2.4.1 
+  - Rails 5.1.7 
+  
+ # clone me 
+ - $ git clone https://github.com/wolfeJob/rails_engine.git
+ - $ cd rails_engine
+ - $ bundle install
+ 
+ # Database Setup
+ - $ rake db:{drop,create,migrate}
+ - $ rake fetch:{customers,merchants,invoices,items,invoice_items,transactions}
+ 
+ # Testing
+ - $rspec [for contoller and model testing]
+ 
+ The entire test suite csan be accessed from the spec harness, clone into your parent dir project
+ - $git clone https://github.com/turingschool/rales_engine_harness.git
+ 
+ - $ cd rails_engine
+ - $ rails s
+ - $ cd ../rales_engine_spec_harness 
+ - $ bundle install 
+ - $ bundle exec rake
+ 
+ 
+ 
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
