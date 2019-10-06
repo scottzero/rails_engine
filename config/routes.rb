@@ -94,6 +94,7 @@ end
       get "/:id/invoices", to: "invoices#index"
         #business logic endpoints
       get "/most_revenue", to: "most_revenue#index"
+      
     end
     resources :merchants, only: [:index,:show]
   end
