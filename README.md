@@ -4,7 +4,8 @@ Rails Engine is a Turing School of Software & Design project that uses Rails to 
 sales data imported from CSV files. 
 
 # Database Schema
-  ![db_schema](https://ibb.co/M6NqY0N)
+  <img width="1016" alt="screenshot101" src="https://user-images.githubusercontent.com/33855435/66276509-1beca780-e851-11e9-9cfb-076d85aa727f.png">
+
   
 # Environment Setup 
   - Ruby 2.4.1 
